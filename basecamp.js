@@ -11,9 +11,10 @@ const secretKey = process.env.SECRET_KEY;
 
 const encryptedclientId = "U2FsdGVkX1/NvoGhZPkYjP2FcrUErmI/OFS5HOH3OMDdj64Agm1nUejs0iyKh4OySL6xYyzm291i2kMGS5gWZQ==";
 const encryptedclientSecret = "U2FsdGVkX19fg2Z9UgfmKxsQi7FXA0hYhXWtzwx2UbHnQGdEROEFryy05VNnpoK2mfBJHeMVkPLxAwO05kBbFA==";
+const encryptedrefreshToken = "U2FsdGVkX1/Bre16n6FlFrJXWuKNw7ZrGEViWogbEEroasznd7/eMe3CX2l07ArlBXxun+CGqCGK0YJY/yrQ6MST69/haVtixckQURWwyJIBUWIR+S08a3JcAzVQqz77wM2HSzg2zIsmvYsMH4yWtcZ501E6NP1RJzoLD9xWDsAmeYb6OC+5iSypsFEQRw26dZ9Mp8wvnSKFieK2bQcosdrCcTF6UW2g2dR5l3qMx1LPiyX7HUoK07jEfL0ULSkN8jFCoFFHCNY3eY3lMsafEPfD/0nhTAMHDJCB5YOUBoy3sNACThXT088Z6AhUvHzr2Q/1MWcAkRzKin9FrU9UwYqnpiRr+RxB++s3voMt3Ow5t/KTRS4q2Sahf3ZZ9VLH14Uu7PoxF1qpLUJD+PdTs41+xe7iWyLKOKbBZKA8BiWWaBUxiRhDt50DL+Y0qRzsUhyJ5Wi/n/58FodmJPRPqqtIYbvFluvf2suDJx04O5GD178ltWmp+pcfhka1/8BodZO+jYqekMGsOvUoMpv4yiOuULPNoQ4NQHVv058o/2Q=";
 
 async function getAccessTokenFromRefreshToken() {
-  const refreshToken = "BAhbB0kiAbB7ImNsaWVudF9pZCI6IjY3NjZlYmFiM2E1Y2ZhOTAwOTI0MjM1OTNjNjZlZjQ3NzMwN2Y3ZmIiLCJleHBpcmVzX2F0IjoiMjAzNS0wNi0yNlQwNzoxMTo1NloiLCJ1c2VyX2lkcyI6WzQxOTY0MjM2XSwidmVyc2lvbiI6MSwiYXBpX2RlYWRib2x0IjoiNzA0OGJjYmU2OGJkZWViN2QyODc0YzBkNjkyNDAyZjcifQY6BkVUSXU6CVRpbWUNR9chwI9EjS8JOg1uYW5vX251bWkCrAI6DW5hbm9fZGVuaQY6DXN1Ym1pY3JvIgdoQDoJem9uZUkiCFVUQwY7AEY=--3c2cbe3027ef1718dd64c47db58f136fe54e4179";
+  const refreshToken = CryptoJS.AES.decrypt(encryptedrefreshToken, secretKey).toString(CryptoJS.enc.Utf8);
   const clientId = CryptoJS.AES.decrypt(encryptedclientId, secretKey).toString(CryptoJS.enc.Utf8);
   const clientSecret = CryptoJS.AES.decrypt(encryptedclientSecret, secretKey).toString(CryptoJS.enc.Utf8);
 
@@ -57,6 +58,7 @@ async function uploadImage(filePath, accessToken) {
 
 async function postToBasecamp(service, env) {
   const accessToken = await getAccessTokenFromRefreshToken();
+  console.log("accessToken: " + accessToken);
   const getThreadId = (service) => process.env[`BASECAMP_THREAD_${service}`];
   const getProjectId = (env) => process.env[`BASECAMP_PROJECT_${env}`];
 
