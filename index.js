@@ -6,7 +6,7 @@ const moment = require("moment");
 const dotenv = require("dotenv");
 const { CloudWatchClient, GetMetricStatisticsCommand } = require("@aws-sdk/client-cloudwatch");
 const { ECSClient, ListServicesCommand, DescribeServicesCommand } = require("@aws-sdk/client-ecs");
-const generateChart = require("./chartGenerator.js");
+const { generateChart, generateTaskCountChart } = require("./chartGenerator.js");
 const sendEmail = require("./notify.js");
 const { postToBasecamp, checkAndUpdateExpiresIn } = require("./basecamp.js");
 
@@ -59,8 +59,8 @@ async function getRunningTasks(service, metricName, statType) {
     Period: 86400,
     Statistics: [statType]
   };
-  console.log("StartTime: " + new Date(yesterday) ) 
-    console.log("EndTime: " + new Date(today) ) 
+  console.log("StartTime: " + new Date(yesterday))
+  console.log("EndTime: " + new Date(today))
 
   const result = await cloudwatch.send(new GetMetricStatisticsCommand(params));
   const point = result.Datapoints?.sort((a, b) => new Date(b.Timestamp) - new Date(a.Timestamp))[0];
@@ -107,6 +107,27 @@ async function getTimeseries(service, metricName) {
     max: dp.Maximum || 0
   })) || [];
 }
+
+async function getTaskTimeseries(service, metricName) {
+  const params = {
+    Namespace: "ECS/ContainerInsights",
+    MetricName: metricName,
+    Dimensions: [
+      { Name: "ClusterName", Value: CLUSTER_NAME },
+      { Name: "ServiceName", Value: service }
+    ],
+    StartTime: new Date(yesterday),
+    EndTime: new Date(today),
+    Period: 900, // 30 minutes
+    Statistics: ["Maximum"]
+  };
+  const result = await cloudwatch.send(new GetMetricStatisticsCommand(params));
+  return result.Datapoints?.map(dp => ({
+    timestamp: dp.Timestamp,
+    value: dp.Maximum || 0
+  })) || [];
+}
+
 
 function generateReportContent(templatePath, dataMap) {
   let template = fs.readFileSync(templatePath, 'utf-8');
@@ -156,7 +177,9 @@ async function main() {
 
       const cpuSeries = await getTimeseries(service, 'CPUUtilization');
       const memSeries = await getTimeseries(service, 'MemoryUtilization');
+      const taskSeries = await getTaskTimeseries(service, 'RunningTaskCount');
 
+      await generateTaskCountChart(service, 'RunningTaskCount', taskSeries, 'Running Task Count', ENV);
       await generateChart(service, 'CPUUtilization', cpuSeries, 'CPU Utilization', ENV);
       await generateChart(service, 'MemoryUtilization', memSeries, 'Memory Utilization', ENV);
 

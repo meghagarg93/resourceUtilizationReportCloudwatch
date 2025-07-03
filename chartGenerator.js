@@ -137,4 +137,112 @@ async function generateChart(serviceName, metricName, timeseriesData, title, ENV
   return fileName;
 }
 
-module.exports = generateChart;
+
+async function generateTaskCountChart(serviceName, metricName, timeseriesData, title, ENV) {
+  if (!timeseriesData || timeseriesData.length === 0) {
+    console.warn(`⚠️ No data for chart: ${title} (${serviceName})`);
+    return;
+  }
+
+  timeseriesData.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+  const labels = timeseriesData.map(item => new Date(item.timestamp).toLocaleString());
+  const values = timeseriesData.map(item => item.value);
+
+  let maxVal = -Infinity;
+  let maxIndex = 0;
+  values.forEach((v, i) => {
+    if (v > maxVal) {
+      maxVal = v;
+      maxIndex = i;
+    }
+  });
+  const maxLabel = labels[maxIndex];
+
+  const config = {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Running Task Count',
+          data: values,
+          borderColor: 'purple',
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          fill: false,
+          tension: 0.2
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Time'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Task Count'
+          },
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        annotation: {
+          annotations: {
+            highPointLine: {
+              type: 'line',
+              xMin: maxLabel,
+              xMax: maxLabel,
+              borderColor: 'orange',
+              borderWidth: 2,
+              borderDash: [6, 6],
+              label: {
+                display: true,
+                content: `Max: ${maxVal.toFixed(0)}`,
+                position: 'end',
+                backgroundColor: 'orange',
+                color: 'white',
+                font: {
+                  weight: 'bold'
+                }
+              }
+            }
+          }
+        },
+        legend: {
+          position: 'top'
+        },
+        tooltip: {
+          enabled: true
+        },
+        title: {
+          display: true,
+          text: `${title} (${serviceName})`,
+          font: { size: 18 }
+        }
+      }
+    }
+  };
+
+  const imageBuffer = await chartJSNodeCanvas.renderToBuffer(config);
+  const safeTitle = title.toLowerCase().replace(/\s+/g, '');
+  const outputDir = path.join(__dirname, 'outputs', ENV);
+  fs.mkdirSync(outputDir, { recursive: true });
+  const fileName = `${serviceName}_${ENV}_${safeTitle}_chart.png`;
+  const outputPath = path.join(outputDir, fileName);
+  fs.writeFileSync(outputPath, imageBuffer);
+  console.log(`📈 Chart saved: ${outputPath}`);
+  return fileName;
+}
+
+
+
+module.exports = {
+  generateChart,
+  generateTaskCountChart
+};

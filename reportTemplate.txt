@@ -17,3 +17,7 @@ Max Memory Utilization - <<MAX_MEMORY_USAGE>> %
 
 3. Memory Utilization 
 <bc-attachment sgid="<<memory_chart_link>>" caption="Memory chart"></bc-attachment>
+
+4. Task Count 
+<bc-attachment sgid="<<taskCount_chart_link>>" caption="Task Count chart"></bc-attachment>
+

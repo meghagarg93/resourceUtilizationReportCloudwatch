@@ -72,10 +72,13 @@ async function postToBasecamp(service, env) {
 
   const cpuPath = `./outputs/${env}/${service}_${env}_cpuutilization_chart.png`;
   const memPath = `./outputs/${env}/${service}_${env}_memoryutilization_chart.png`;
+    const tcPath = `./outputs/${env}/${service}_${env}_runningtaskcount_chart.png`;
   const reportPath = `./outputs/${env}/report_${service}.txt`;
 
   const cpuSGID = await uploadImage(cpuPath, accessToken);
   const memSGID = await uploadImage(memPath, accessToken);
+  const tcSGID = await uploadImage(tcPath, accessToken);
+
 
   if (!cpuSGID || !memSGID) {
     console.warn(`⚠️ One or more attachments failed for ${service}`);
@@ -86,6 +89,8 @@ async function postToBasecamp(service, env) {
   let content = fs.readFileSync(reportPath, "utf-8");
   content = content.replace("<<cpu_chart_link>>", cpuSGID);
   content = content.replace("<<memory_chart_link>>", memSGID);
+  content = content.replace("<<taskCount_chart_link>>", tcSGID);
+
   fs.writeFileSync(reportPath, content);
 
   const url = `https://3.basecampapi.com/4489886/buckets/${projectId}/recordings/${threadId}/comments.json`;
