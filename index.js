@@ -159,7 +159,7 @@ async function main() {
   clearOutputDir(ENV);
   try {
     let services = SPECIFIC_SERVICES.length > 0 ? SPECIFIC_SERVICES : await getServiceNames();
-    const excludedApps = ["NotificationsAppWeb", "SupportAdminAppWeb", "MobileGatewayAppWeb", "NlpAppWeb", "FocAppWeb", "LearningpathWeb", "ClassAppWeb", "IeltsAppWeb"];
+    const excludedApps = ["IeltsAppWeb"];
     for (const service of services) {
       console.log(service);
       if (excludedApps.includes(service) && !SPECIFIC_SERVICES.includes(service)) {
