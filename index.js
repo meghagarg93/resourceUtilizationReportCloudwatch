@@ -201,7 +201,7 @@ async function main() {
       }
       console.log(`\n📊 Processing: ${service}`);
 
-      const maxTasks = await getRunningTasks(service, 'RunningTaskCount', 'Maximum');
+      const maxTasks = await getRunningTasks(service, 'DesiredTaskCount', 'Maximum');
       console.log(maxTasks);
       const maxCpu = await getMetricStat(service, 'CPUUtilization', 'Maximum');
       const maxMem = await getMetricStat(service, 'MemoryUtilization', 'Maximum');
@@ -212,7 +212,8 @@ async function main() {
       const memSeries = await getTimeseries(service, 'MemoryUtilization');
       const taskSeries = await getTaskTimeseries(service, 'RunningTaskCount');
 
-      await generateTaskCountChart(service, 'RunningTaskCount', taskSeries, 'Running Task Count', ENV);
+      // await generateTaskCountChart(service, 'RunningTaskCount', taskSeries, 'Running Task Count', ENV);
+      // Report text 4. Task Count <bc-attachment sgid="<<taskCount_chart_link>>" caption="Task Count chart"></bc-attachment>
       await generateChart(service, 'CPUUtilization', cpuSeries, 'CPU Utilization', ENV);
       await generateChart(service, 'MemoryUtilization', memSeries, 'Memory Utilization', ENV);
 
@@ -237,7 +238,7 @@ async function main() {
         console.error(`❌ Failed to send email for ${service}:`, err.message);
       }
 
-      await postToBasecamp(service, ENV);
+      // await postToBasecamp(service, ENV);
     }
   } catch (err) {
     console.error('❌ Error:', err);
