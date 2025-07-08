@@ -37,14 +37,47 @@ const REPORT_DURATION = `${yesterday} to ${today}`;
 const cloudwatch = new CloudWatchClient({ region: REGION });
 const ecs = new ECSClient({ region: REGION });
 
+// async function getServiceNames() {
+//   const listCmd = new ListServicesCommand({ cluster: CLUSTER_NAME });
+//   console.log("listCmd: " + JSON.stringify(listCmd))
+//   const data = await ecs.send(listCmd);
+//   const describeCmd = new DescribeServicesCommand({ cluster: CLUSTER_NAME, services: data.serviceArns });
+//   const svcData = await ecs.send(describeCmd);
+//   return svcData.services.map(svc => svc.serviceName);
+// }
+
 async function getServiceNames() {
-  const listCmd = new ListServicesCommand({ cluster: CLUSTER_NAME });
-  console.log(JSON.stringify(listCmd))
-  const data = await ecs.send(listCmd);
-  const describeCmd = new DescribeServicesCommand({ cluster: CLUSTER_NAME, services: data.serviceArns });
-  const svcData = await ecs.send(describeCmd);
-  return svcData.services.map(svc => svc.serviceName);
+  let serviceArns = [];
+  let nextToken;
+
+  do {
+    const listCmd = new ListServicesCommand({
+      cluster: CLUSTER_NAME,
+      nextToken,
+      maxResults: 10, // optional: defaults to 10, max 100
+    });
+
+    const data = await ecs.send(listCmd);
+    serviceArns.push(...data.serviceArns);
+    nextToken = data.nextToken;
+  } while (nextToken);
+
+  // Now describe all services (in batches of 10 if needed)
+  const serviceNames = [];
+
+  for (let i = 0; i < serviceArns.length; i += 10) {
+    const batch = serviceArns.slice(i, i + 10);
+    const describeCmd = new DescribeServicesCommand({
+      cluster: CLUSTER_NAME,
+      services: batch,
+    });
+    const svcData = await ecs.send(describeCmd);
+    serviceNames.push(...svcData.services.map(svc => svc.serviceName));
+  }
+  console.log("Fetched service names:", serviceNames);
+  return serviceNames;
 }
+
 
 async function getRunningTasks(service, metricName, statType) {
   const params = {
@@ -160,8 +193,8 @@ async function main() {
   try {
     let services = SPECIFIC_SERVICES.length > 0 ? SPECIFIC_SERVICES : await getServiceNames();
     const excludedApps = ["IeltsAppWeb"];
+    console.log("service count: " + services.length)
     for (const service of services) {
-      console.log(service);
       if (excludedApps.includes(service) && !SPECIFIC_SERVICES.includes(service)) {
         console.log(`⛔ Skipping excluded app: ${service}`);
         continue;
