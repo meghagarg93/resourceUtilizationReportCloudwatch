@@ -238,7 +238,7 @@ async function main() {
         console.error(`❌ Failed to send email for ${service}:`, err.message);
       }
 
-      // await postToBasecamp(service, ENV);
+      await postToBasecamp(service, ENV);
     }
   } catch (err) {
     console.error('❌ Error:', err);
