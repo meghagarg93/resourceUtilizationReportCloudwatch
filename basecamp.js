@@ -59,11 +59,11 @@ async function uploadImage(filePath, accessToken) {
 async function postToBasecamp(service, env) {
   const accessToken = await getAccessTokenFromRefreshToken();
   console.log("accessToken: " + accessToken);
-  const getThreadId = (service) => process.env[`BASECAMP_THREAD_${service}`];
+  const getThreadId = (service, env) => process.env[`BASECAMP_THREAD_${service}_${env}`];
   const getProjectId = (env) => process.env[`BASECAMP_PROJECT_${env}`];
 
   const projectId = getProjectId(env);
-  const threadId = getThreadId(service);
+  const threadId = getThreadId(service, env);
 
   if (!threadId) {
     console.warn(`⚠️ No Basecamp thread mapping found for ${service}`);
@@ -72,12 +72,12 @@ async function postToBasecamp(service, env) {
 
   const cpuPath = `./outputs/${env}/${service}_${env}_cpuutilization_chart.png`;
   const memPath = `./outputs/${env}/${service}_${env}_memoryutilization_chart.png`;
-    const tcPath = `./outputs/${env}/${service}_${env}_runningtaskcount_chart.png`;
+  const tcPath = `./outputs/${env}/${service}_${env}_runningtaskcount_chart.png`;
   const reportPath = `./outputs/${env}/report_${service}.txt`;
 
   const cpuSGID = await uploadImage(cpuPath, accessToken);
   const memSGID = await uploadImage(memPath, accessToken);
-  const tcSGID = await uploadImage(tcPath, accessToken);
+  // const tcSGID = await uploadImage(tcPath, accessToken);
 
 
   if (!cpuSGID || !memSGID) {
@@ -89,7 +89,7 @@ async function postToBasecamp(service, env) {
   let content = fs.readFileSync(reportPath, "utf-8");
   content = content.replace("<<cpu_chart_link>>", cpuSGID);
   content = content.replace("<<memory_chart_link>>", memSGID);
-  content = content.replace("<<taskCount_chart_link>>", tcSGID);
+  // content = content.replace("<<taskCount_chart_link>>", tcSGID);
 
   fs.writeFileSync(reportPath, content);
 

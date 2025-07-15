@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const moment = require("moment");
+const moment = require("moment-timezone");
 const dotenv = require("dotenv");
 const { CloudWatchClient, GetMetricStatisticsCommand } = require("@aws-sdk/client-cloudwatch");
 const { ECSClient, ListServicesCommand, DescribeServicesCommand } = require("@aws-sdk/client-ecs");
@@ -15,10 +15,34 @@ dotenv.config();
 const REGION = process.env.AWS_REGION;
 const TEMPLATE_PATH = path.join(__dirname, 'reportTemplate.txt');
 
-let ENV, DATE_ARG, SPECIFIC_SERVICES = [];
+// let ENV, DATE_ARG, SPECIFIC_SERVICES = [];
+// process.argv.forEach(arg => {
+//   if (arg.startsWith('--env=')) ENV = arg.split('=')[1];
+//   else if (arg.startsWith('--date=')) DATE_ARG = arg.split('=')[1];
+//   else if (arg.startsWith('--service=')) SPECIFIC_SERVICES = arg.split('=')[1].split(',').map(s => s.trim());
+// });
+
+// const CLUSTER_NAME = `dls-cup-${ENV}-apps`;
+// console.log(`📦 Using cluster: ${CLUSTER_NAME}`);
+
+// // ✅ Set credentials based on environment
+// process.env.AWS_ACCESS_KEY_ID = process.env[`AWS_ACCESS_KEY_ID_${ENV.toUpperCase()}`];
+// process.env.AWS_SECRET_ACCESS_KEY = process.env[`AWS_SECRET_ACCESS_KEY_${ENV.toUpperCase()}`];
+
+// const reportDate = DATE_ARG ? moment(DATE_ARG, "YYYY-MM-DD") : moment();
+// // const today = reportDate.format("YYYY-MM-DD 10:00:00+0530");
+// // const yesterday = reportDate.clone().subtract(1, "day").format("YYYY-MM-DD 10:00:00+0530");
+// const today = reportDate.format("YYYY-MM-DD HH:mm:ssZ");
+// const yesterday = reportDate.clone().subtract(1, "day").format("YYYY-MM-DD HH:mm:ssZ");
+// const REPORT_DURATION = `${yesterday} to ${today}`;
+
+let ENV, DATE_ARG, START_ARG, END_ARG, SPECIFIC_SERVICES = [];
+
 process.argv.forEach(arg => {
   if (arg.startsWith('--env=')) ENV = arg.split('=')[1];
   else if (arg.startsWith('--date=')) DATE_ARG = arg.split('=')[1];
+  else if (arg.startsWith('--start=')) START_ARG = arg.split('=')[1];
+  else if (arg.startsWith('--end=')) END_ARG = arg.split('=')[1];
   else if (arg.startsWith('--service=')) SPECIFIC_SERVICES = arg.split('=')[1].split(',').map(s => s.trim());
 });
 
@@ -29,10 +53,45 @@ console.log(`📦 Using cluster: ${CLUSTER_NAME}`);
 process.env.AWS_ACCESS_KEY_ID = process.env[`AWS_ACCESS_KEY_ID_${ENV.toUpperCase()}`];
 process.env.AWS_SECRET_ACCESS_KEY = process.env[`AWS_SECRET_ACCESS_KEY_${ENV.toUpperCase()}`];
 
-const reportDate = DATE_ARG ? moment(DATE_ARG, "YYYY-MM-DD") : moment();
-const today = reportDate.format("YYYY-MM-DD 10:00:00+0530");
-const yesterday = reportDate.clone().subtract(1, "day").format("YYYY-MM-DD 10:00:00+0530");
+let startTime, endTime;
+
+if (START_ARG && END_ARG) {
+  startTime = moment.tz(START_ARG, "YYYY-MM-DD HH:mm", "Asia/Kolkata");
+  endTime = moment.tz(END_ARG, "YYYY-MM-DD HH:mm", "Asia/Kolkata");
+
+  if (!startTime.isValid() || !endTime.isValid()) {
+    throw new Error(`Invalid --start or --end format. Use "YYYY-MM-DD HH:mm"`);
+  }
+} else {
+  let reportDate;
+
+  if (DATE_ARG) {
+    reportDate = moment.tz(DATE_ARG, ["YYYY-MM-DD HH:mm", "YYYY-MM-DD"], "Asia/Kolkata");
+
+    if (!reportDate.isValid()) {
+      throw new Error(`Invalid --date format. Use "YYYY-MM-DD" or "YYYY-MM-DD HH:mm"`);
+    }
+
+    if (/^\d{4}-\d{2}-\d{2}$/.test(DATE_ARG.trim())) {
+      reportDate.set({ hour: 10, minute: 0, second: 0, millisecond: 0 });
+    }
+
+  } else {
+    // ✅ Default: 10:00 today IST
+    reportDate = moment.tz("Asia/Kolkata").set({ hour: 10, minute: 0, second: 0, millisecond: 0 });
+  }
+
+  endTime = reportDate;
+  startTime = reportDate.clone().subtract(1, "day");
+}
+
+// ✅ Format start and end
+const today = endTime.format("YYYY-MM-DD HH:mm:ssZ");
+const yesterday = startTime.format("YYYY-MM-DD HH:mm:ssZ");
 const REPORT_DURATION = `${yesterday} to ${today}`;
+
+console.log(`📅 Report Duration: ${REPORT_DURATION}`);
+
 
 const cloudwatch = new CloudWatchClient({ region: REGION });
 const ecs = new ECSClient({ region: REGION });
