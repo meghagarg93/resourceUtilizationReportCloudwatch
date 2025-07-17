@@ -1,20 +1,20 @@
 MobileGatewayAppWeb Daily Resource Utilization Report
 
-Duration: 2025-07-15 10:00:00+05:30 to 2025-07-16 10:00:00+05:30
+Duration: 2025-07-16 10:00:00+05:30 to 2025-07-17 10:00:00+05:30
 Cluster Name: dls-cup-rel-apps
 Environment: rel
 
 
 1. Overview
 Running Tasks - 1
-Avg CPU Utilization - 0.53 %
-Avg Memory Utilization - 6.78 %
-Max CPU Utilization - 44.35%
-Max Memory Utilization - 8.15 %
+Avg CPU Utilization - 0.83 %
+Avg Memory Utilization - 7.21 %
+Max CPU Utilization - 14.41%
+Max Memory Utilization - 8.11 %
 
 2. CPU Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc0MTk2NDgzOD9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--2c6a6f0fa91bf994a88056337f82728f76a0abb1" caption="CPU chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc0MjQyODg0NT9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--9cfa251d120d5f7c356c9e1b193d3c7f5318ba66" caption="CPU chart"></bc-attachment>
 
 3. Memory Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc0MTk2NDg0MT9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--76bfa42ef472032419e95a7aaf519f1d6ffe6b98" caption="Memory chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc0MjQyODg0Nz9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--108acf305c2717d7186bc99d2f434d64167dd809" caption="Memory chart"></bc-attachment>
 
