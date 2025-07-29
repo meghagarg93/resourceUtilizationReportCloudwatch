@@ -1,20 +1,20 @@
 SupportAdminAppWeb Daily Resource Utilization Report
 
-Duration: 2025-07-27 10:00:00+05:30 to 2025-07-28 10:00:00+05:30
+Duration: 2025-07-28 10:00:00+05:30 to 2025-07-29 10:00:00+05:30
 Cluster Name: dls-cup-rel-apps
 Environment: rel
 
 
 1. Overview
 Running Tasks - 2
-Avg CPU Utilization - 0.18 %
-Avg Memory Utilization - 11.65 %
-Max CPU Utilization - 7.08%
-Max Memory Utilization - 12.70 %
+Avg CPU Utilization - 0.19 %
+Avg Memory Utilization - 12.01 %
+Max CPU Utilization - 6.79%
+Max Memory Utilization - 12.79 %
 
 2. CPU Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc0NTgzMDg2Nz9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--11d077deb5e1d22d26689b6901e88ea94772bc38" caption="CPU chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc0NjI4NzcwNz9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--2e800d39f339d775fc572dc7aa1d756dc3555ec2" caption="CPU chart"></bc-attachment>
 
 3. Memory Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc0NTgzMDg2OD9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--bcdaae318490d6d47463c1fda81c4f94e7ab9998" caption="Memory chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc0NjI4NzcwOD9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--116372df6b6d4a10bf2f950f44a0071fa32fd28c" caption="Memory chart"></bc-attachment>
 
