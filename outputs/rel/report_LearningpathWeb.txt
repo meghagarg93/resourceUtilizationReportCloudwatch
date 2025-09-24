@@ -1,20 +1,20 @@
 LearningpathWeb Daily Resource Utilization Report
 
-Duration: 2025-09-22 10:00:00+05:30 to 2025-09-23 10:00:00+05:30
+Duration: 2025-09-23 10:00:00+05:30 to 2025-09-24 10:00:00+05:30
 Cluster Name: dls-cup-rel-apps
 Environment: rel
 
 
 1. Overview
 Running Tasks - 1
-Avg CPU Utilization - 1.46 %
-Avg Memory Utilization - 8.48 %
-Max CPU Utilization - 11.52%
-Max Memory Utilization - 9.08 %
+Avg CPU Utilization - 1.19 %
+Avg Memory Utilization - 8.70 %
+Max CPU Utilization - 9.15%
+Max Memory Utilization - 8.89 %
 
 2. CPU Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc2NjA1NDg2Mz9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--4e5a3e699b98faca7d09243d9f644775df1659ab" caption="CPU chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc2NjU0MjkyNj9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--35dad21bcbe50a55806ed7ead421613c5710d08c" caption="CPU chart"></bc-attachment>
 
 3. Memory Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc2NjA1NDg2ND9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--19e0d30aa05bfe0291e83b1fddf2a7fb8b81e840" caption="Memory chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzc2NjU0MjkyOT9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--01f566970d62eed285bf1fc5f7c037877ed567c7" caption="Memory chart"></bc-attachment>
 
