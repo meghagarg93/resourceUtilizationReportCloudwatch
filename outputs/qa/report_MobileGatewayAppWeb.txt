@@ -1,6 +1,6 @@
 MobileGatewayAppWeb Daily Resource Utilization Report
 
-Duration: 2026-02-05 10:00:00+05:30 to 2026-02-06 10:00:00+05:30
+Duration: 2026-02-06 10:00:00+05:30 to 2026-02-07 10:00:00+05:30
 Cluster Name: dls-cup-qa-apps
 Environment: qa
 
@@ -8,13 +8,13 @@ Environment: qa
 1. Overview
 Running Tasks - 1
 Avg CPU Utilization - 0.33 %
-Avg Memory Utilization - 10.74 %
-Max CPU Utilization - 5.69%
-Max Memory Utilization - 10.79 %
+Avg Memory Utilization - 10.81 %
+Max CPU Utilization - 6.26%
+Max Memory Utilization - 10.84 %
 
 2. CPU Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50LzgxMjQxMzMwOT9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--795c557eee6fbcac4e9a2dde901c02a715fb00e7" caption="CPU chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50LzgxMjgyOTE1OD9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--79c2d6c94c0d0e3ec27ae6ec1e56b4c7e2b5387d" caption="CPU chart"></bc-attachment>
 
 3. Memory Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50LzgxMjQxMzMxMD9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--0600a9429859bacc29fc17af54e9e25905769f3b" caption="Memory chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50LzgxMjgyOTE1OT9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--13c125700d35e529b3d64bf0947265c5ebba968c" caption="Memory chart"></bc-attachment>
 
