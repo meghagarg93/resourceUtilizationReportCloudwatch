@@ -1,20 +1,20 @@
 LearningpathWeb Daily Resource Utilization Report
 
-Duration: 2026-05-18 10:00:00+05:30 to 2026-05-19 10:00:00+05:30
+Duration: 2026-05-19 10:00:00+05:30 to 2026-05-20 10:00:00+05:30
 Cluster Name: dls-cup-qa-apps
 Environment: qa
 
 
 1. Overview
 Running Tasks - 1
-Avg CPU Utilization - 1.46 %
-Avg Memory Utilization - 9.38 %
-Max CPU Utilization - 93.29%
-Max Memory Utilization - 10.60 %
+Avg CPU Utilization - 1.25 %
+Avg Memory Utilization - 9.49 %
+Max CPU Utilization - 20.43%
+Max Memory Utilization - 10.84 %
 
 2. CPU Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzg0OTA0NjQ5Nj9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--4e8748f833497a71f19e7707e8e480c385fdb28d" caption="CPU chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzg0OTU1OTYzND9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--7d539e621d688c33d0cfda3bd02c07a39246d0b9" caption="CPU chart"></bc-attachment>
 
 3. Memory Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzg0OTA0NjQ5Nz9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--eebdb4eb9a1afc15679988c87250e52cc83a2176" caption="Memory chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzg0OTU1OTYzNj9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--bbd43f388a1f014ebb959c4c14de8a69b6f9991c" caption="Memory chart"></bc-attachment>
 
