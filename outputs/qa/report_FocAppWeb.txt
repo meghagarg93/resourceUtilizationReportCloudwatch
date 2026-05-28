@@ -1,20 +1,20 @@
 FocAppWeb Daily Resource Utilization Report
 
-Duration: 2026-05-26 10:00:00+05:30 to 2026-05-27 10:00:00+05:30
+Duration: 2026-05-27 10:00:00+05:30 to 2026-05-28 10:00:00+05:30
 Cluster Name: dls-cup-qa-apps
 Environment: qa
 
 
 1. Overview
 Running Tasks - 1
-Avg CPU Utilization - 0.58 %
-Avg Memory Utilization - 12.11 %
-Max CPU Utilization - 15.04%
+Avg CPU Utilization - 0.78 %
+Avg Memory Utilization - 9.98 %
+Max CPU Utilization - 69.89%
 Max Memory Utilization - 12.11 %
 
 2. CPU Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzg1MjE4NTY3Mj9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--fb20244bb6e61fc5915e1e4975c00caf100e812e" caption="CPU chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzg1MjY3NTg3ND9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--7aaa51ec12503e2eada56fce8acb213b77b680e3" caption="CPU chart"></bc-attachment>
 
 3. Memory Utilization 
-<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzg1MjE4NTY3OT9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--6db49a31246d0c6217ff34bbf88448e48d56b7fa" caption="Memory chart"></bc-attachment>
+<bc-attachment sgid="BAh7BkkiC19yYWlscwY6BkVUewdJIglkYXRhBjsAVEkiLmdpZDovL2JjMy9BdHRhY2htZW50Lzg1MjY3NTg3NT9leHBpcmVzX2luBjsAVEkiCHB1cgY7AFRJIg9hdHRhY2hhYmxlBjsAVA==--b45190e948bd7a3a1f13404cad6fd8518047f746" caption="Memory chart"></bc-attachment>
 
